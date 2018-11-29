@@ -27,13 +27,14 @@ PROJECT_NAME = os.environ['PROJECT_NAME']
 @frontend.before_request
 def before_request():
     g.event = Event.create_event(request)
-    if ('login_id' in request.args):
-        g.event['login_id'] = request.args['login_id']
-    
-    block_message = Waf.perform_waf_check(g.event, 'REQUEST', request.form)
-    if (block_message is not None):
-        logging.debug("Request was blocked: %s" % block_message)
-        return render_template('blocked.html')
+    if (str(request.path) != "/img/403.jpg"): 
+        if ('login_id' in request.args):
+            g.event['login_id'] = request.args['login_id']
+        
+        block_message = Waf.perform_waf_check(g.event, 'REQUEST', request.form)
+        if (block_message is not None):
+            logging.info("Request was blocked: %s" % block_message)
+            return render_template('blocked.html')
 
 @frontend.after_request
 def after_request(response):
@@ -45,7 +46,7 @@ def after_request(response):
         block_message = Waf.perform_waf_check(g.event, 'RESPONSE', request.form, Event.encrypt_data(content))
         if (block_message is not None):
             g.event['request_response'] = content
-            logging.debug("Response was blocked: %s" % block_message)
+            logging.info("Response was blocked: %s" % block_message)
             blocked = True
         
         logging.debug("Response is: " + response.get_data())
