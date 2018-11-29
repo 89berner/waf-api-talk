@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scanner
+  labels:
+    service: scanner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: scanner
+  template:
+    metadata:
+      labels:
+        service: scanner
+    spec:
+      containers:
+      - name: scanner
+        resources:
+          requests:
+            cpu: 10m
+        image: gcr.io/PROJECT_NAME_TEMPLATE/scanner:latest
+        env:
+          - name: PROJECT_NAME
+            value: PROJECT_NAME_TEMPLATE

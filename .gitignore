@@ -1,0 +1,16 @@
+*tfstat*
+flow_processor/.idea/
+flow_processor/target/*
+.DS_Store
+credentials/*
+flow_processor/waf-pipeline.iml
+tmp/
+plugins/
+.terraform.tfstate.lock.info
+terraform.tfstate
+.terraform/*
+services/waf/Dockerfile
+services/waf/README.md
+services/waf/apache/
+services/waf/api/
+services/waf/entrypoint.sh

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: waf
+  labels:
+    service: waf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: waf
+  template:
+    metadata:
+      labels:
+        service: waf
+    spec:
+      containers:
+      - name: waf
+        image: gcr.io/PROJECT_NAME_TEMPLATE/waf:latest
+        resources:
+          requests:
+            cpu: 10m

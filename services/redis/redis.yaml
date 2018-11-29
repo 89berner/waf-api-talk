@@ -1,0 +1,25 @@
+#https://estl.tech/deploying-redis-with-persistence-on-google-kubernetes-engine-c1d60f70a043
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+  labels:
+    service: redis
+spec:
+  serviceName: es
+  replicas: 1
+  selector:
+    matchLabels:
+      service: redis
+  template:
+    metadata:
+      labels:
+        service: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:3.2-alpine
+        resources:
+          requests:
+            cpu: 10m

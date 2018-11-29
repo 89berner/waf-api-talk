@@ -1,0 +1,6 @@
+flask
+requests
+google-cloud-pubsub
+pycrypto
+redis
+geoip2

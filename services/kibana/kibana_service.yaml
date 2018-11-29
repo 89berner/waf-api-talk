@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana
+  labels:
+    service: kibana
+spec:
+  clusterIP: None
+  ports:
+  - port: 5601
+    name: serving
+    protocol: TCP
+  selector:
+    service: kibana

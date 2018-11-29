@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  annotations:
+    cloud.google.com/load-balancer-type: "Internal"
+spec:
+  ports:
+    - port: 6379
+      targetPort: 6379
+      name: redis
+  selector:
+    service: redis
+  loadBalancerIP: 10.132.0.5
+  type: LoadBalancer

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logstash
+  labels:
+    service: logstash
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: logstash
+  template:
+    metadata:
+      labels:
+        service: logstash
+    spec:
+      volumes:
+      - name: google-cloud-key
+        secret:
+          secretName: pubsub-key
+      containers:
+      - name: logstash
+        image: gcr.io/PROJECT_NAME_TEMPLATE/logstash-waf:latest
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - name: google-cloud-key
+          mountPath: /opt/conf/logstash-secret
+        env:
+          - name: ELASTICSEARCH_URL
+            value: http://elasticsearch-0.es.default.svc.cluster.local:9200
+          - name: PROJECT_NAME
+            value: PROJECT_NAME_TEMPLATE
