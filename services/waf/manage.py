@@ -101,7 +101,7 @@ elif args.delete_block_rule:
 	if args.identifier is None or args.identifier_value is None:
 		print("Identifier and value must be set")
 	else:
-		r.delete("waf_block_rule#%s#%s" % (args.identifier, args.identifier_value))
+		r.delete("waf_block_rule#%s#%s" % (args.identifier.lower(), args.identifier_value.lower()))
 		print("Block Rule: Identifier %s has been deleted for value %s" % (args.identifier, args.identifier_value))
 # Virtual patching
 elif args.add_virtual_patching_endpoint:

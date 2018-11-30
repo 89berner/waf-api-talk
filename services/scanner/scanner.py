@@ -6,6 +6,8 @@ import traceback
 import random
 import subprocess
 
+print("Waiting 300 seconds to start..")
+time.sleep(300)
 sleep_factor = int(random.random()*10) + 1
 while(True):
 	try:
