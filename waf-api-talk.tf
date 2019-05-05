@@ -47,7 +47,7 @@ resource "google_pubsub_subscription" "waf-alerts" {
 ### GKE ###
 resource "google_container_cluster" "primary" {
   name = "cluster-waf-api-talk"
-  zone = "europe-west1-b"
+  zone = "europe-west4-b"
   initial_node_count = 3
 
   node_config {

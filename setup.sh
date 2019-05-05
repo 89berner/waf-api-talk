@@ -15,11 +15,11 @@ mv tmp/* services/waf/
 echo "==== Selecting project $PROJECT_NAME.. ===="
 gcloud config set project $PROJECT_NAME
 
-echo "==== Setting region to europe-west1.. ===="
-gcloud config set compute/region europe-west1
+echo "==== Setting region to europe-west4.. ===="
+gcloud config set compute/region europe-west4
 
-echo "==== Setting zone to europe-west1-b.. ===="
-gcloud config set compute/zone europe-west1-b
+echo "==== Setting zone to europe-west4-b.. ===="
+gcloud config set compute/zone europe-west4-b
 
 ### SECRETS ###
 echo "==== Adding logstashsub SA for logstash.. ===="
@@ -59,10 +59,10 @@ fi
 
 ### REGIONAL IPS ###
 echo "==== Setting regional ip address for redis service.. ===="
-gcloud compute addresses create redis-ip --region europe-west1 --subnet default --addresses 10.132.0.5
+gcloud compute addresses create redis-ip --region europe-west4 --subnet default --addresses 10.164.0.5
 
 echo "==== Setting regional ip address for waf service.. ===="
-gcloud compute addresses create waf-ip --region europe-west1 --subnet default --addresses 10.132.0.14
+gcloud compute addresses create waf-ip --region europe-west4 --subnet default --addresses 10.164.0.14
 
 echo "==== Initializing Terraform.. ===="
 terraform init
@@ -164,4 +164,4 @@ echo "==== Waiting for resources to be created.. ===="
 sleep 120;
 
 echo "==== Starting dataflow job.. ===="
-mvn compile exec:java -Dexec.mainClass=org.waf.pipeline.WafPipeline -Dexec.args="--defaultWorkerLogLevel=INFO --workerMachineType=n1-standard-1 --diskSizeGb=100 --maxNumWorkers=1 --projectName=$PROJECT_NAME --region=europe-west1 --zone=europe-west1-b --runner=DataflowRunner --jobName=$PROJECT_NAME-pipeline" -Pdataflow-runner -f flow_processor/pom.xml
+mvn compile exec:java -Dexec.mainClass=org.waf.pipeline.WafPipeline -Dexec.args="--defaultWorkerLogLevel=INFO --workerMachineType=n1-standard-1 --diskSizeGb=100 --maxNumWorkers=1 --projectName=$PROJECT_NAME --region=europe-west4 --zone=europe-west4-b --runner=DataflowRunner --jobName=$PROJECT_NAME-pipeline" -Pdataflow-runner -f flow_processor/pom.xml

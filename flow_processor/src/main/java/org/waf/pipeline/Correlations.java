@@ -37,7 +37,7 @@ public class Correlations {
     }
 
     static class TrackWaf extends PTransform<PCollection<Map<String, String>>, PCollection<String>> {
-        private final String  redis_host = "10.132.0.5";
+        private final String  redis_host = "10.164.0.5";
 
         @Override
         public PCollection<String> expand(PCollection<Map<String, String>> documents) {

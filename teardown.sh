@@ -11,7 +11,7 @@ echo "Selecting project $PROJECT_NAME.."
 gcloud config set project $PROJECT_NAME
 
 echo "Deleting temporary files.."
-rm tmp/*
+rm -rf tmp/
 rm credentials/*
 
 echo "Cancelling Dataflow job"

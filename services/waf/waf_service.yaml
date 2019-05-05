@@ -13,5 +13,5 @@ spec:
       name: waf
   selector:
     service: waf
-  loadBalancerIP: 10.132.0.14
+  loadBalancerIP: 10.164.0.14
   type: LoadBalancer

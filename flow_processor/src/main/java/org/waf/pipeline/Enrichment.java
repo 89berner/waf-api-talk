@@ -66,7 +66,7 @@ public class Enrichment {
 
     static class ProcessEnrichment extends DoFn<KV<String, Map<String, String>>, Map<String, String>> {
         private static URL url_obj;
-        private static String waf_host = "10.132.0.14";
+        private static String waf_host = "10.164.0.14";
 
         @Setup
         public void setup() throws Exception {

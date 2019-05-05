@@ -11,5 +11,5 @@ spec:
       name: redis
   selector:
     service: redis
-  loadBalancerIP: 10.132.0.5
+  loadBalancerIP: 10.164.0.5
   type: LoadBalancer
