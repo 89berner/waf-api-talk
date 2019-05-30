@@ -3,7 +3,7 @@ variable "project_name" {}
 
 provider "google" {
   project = "${var.project_name}"
-  region  = "europe-west1"
+  region  = "europe-west4"
 }
 
 ### PUBSUB ###

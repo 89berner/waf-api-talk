@@ -15,7 +15,7 @@ rm -rf tmp/
 rm credentials/*
 
 echo "Cancelling Dataflow job"
-gcloud dataflow jobs cancel $(gcloud dataflow jobs list|grep Running|cut -d ' ' -f1) --region=europe-west1
+gcloud dataflow jobs cancel $(gcloud dataflow jobs list|grep Running|cut -d ' ' -f1) --region=europe-west4
 
 echo "Destroying Terraform Configuration"
 terraform destroy -auto-approve -var "project_name=$PROJECT_NAME"

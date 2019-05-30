@@ -14,3 +14,8 @@ services/waf/README.md
 services/waf/apache/
 services/waf/api/
 services/waf/entrypoint.sh
+services/alerter/alerter.yaml
+services/demo-web/demo-web.yaml
+services/logstash/logstash.yaml
+services/scanner/scanner.yaml
+services/waf/waf.yaml
