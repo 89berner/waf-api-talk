@@ -47,7 +47,7 @@ resource "google_pubsub_subscription" "waf-alerts" {
 ### GKE ###
 resource "google_container_cluster" "primary" {
   name = "cluster-waf-api-talk"
-  zone = "europe-west4-b"
+  location = "europe-west4-b"
   initial_node_count = 3
 
   node_config {
@@ -58,12 +58,6 @@ resource "google_container_cluster" "primary" {
       "https://www.googleapis.com/auth/monitoring",
     ]
   }
-
-  addons_config {
-    kubernetes_dashboard {
-      disabled = true
-    }
-  }
 }
 
 ### BIGQUERY ###
@@ -71,8 +65,9 @@ resource "google_bigquery_dataset" "default" {
   dataset_id                  = "raw_dataset"
   friendly_name               = "raw-dataset"
   description                 = "Raw data dataset"
+  location                    = "EU"
 
-  labels {
+  labels = {
     env = "default"
   }
 }

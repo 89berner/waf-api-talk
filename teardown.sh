@@ -3,8 +3,8 @@
 PROJECT_NAME=$1
 
 if [ -z "$PROJECT_NAME" ]; then
-	echo "You must pass a project name";
-	exit 1;
+    echo "You must pass a project name";
+    exit 1;
 fi
 
 echo "Selecting project $PROJECT_NAME.."
@@ -15,7 +15,7 @@ rm -rf tmp/
 rm credentials/*
 
 echo "Cancelling Dataflow job"
-gcloud dataflow jobs cancel $(gcloud dataflow jobs list|grep Running|cut -d ' ' -f1) --region=europe-west4
+gcloud dataflow jobs cancel --region="europe-west4" $(gcloud dataflow jobs list --region="europe-west4"|grep Running|cut -d ' ' -f1)
 
 echo "Destroying Terraform Configuration"
 terraform destroy -auto-approve -var "project_name=$PROJECT_NAME"
